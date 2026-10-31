@@ -1981,12 +1981,14 @@ body[data-theme="light"] .contact-form {
 .contact-detail {
     gap: 14px;
     margin-top: 15px;
+    align-items: flex-start;
 }
 
 .contact-detail-icon {
     width: 42px;
     height: 42px;
     flex-basis: 42px;
+    margin-top: 3px;
     border-radius: 14px;
 }
 
