@@ -1775,8 +1775,31 @@ body[data-theme="light"] footer {
 }
 
 .contact-detail .contact-email-link {
-    color: #f8fafc;
+    max-width: 100%;
+    padding: 5px 8px;
+    overflow-wrap: anywhere;
+    border: 1px solid rgba(156, 163, 175, 0.36);
+    border-radius: 8px;
+    background: linear-gradient(110deg, #17191c 15%, #454a52 48%, #17191c 82%);
+    background-size: 220% 100%;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 5px 14px rgba(0, 0, 0, 0.2);
+    color: #e5e7eb;
+    animation: email-metal-sheen 4s ease-in-out infinite;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
     text-decoration: none;
+}
+
+.contact-detail:hover .contact-email-link,
+.contact-detail:focus-visible .contact-email-link {
+    border-color: rgba(209, 213, 219, 0.7);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.18), 0 7px 20px rgba(0, 0, 0, 0.28);
+    transform: translateY(-2px);
+}
+
+.contact-detail:focus-visible {
+    border-radius: 10px;
+    outline: 2px solid #9ca3af;
+    outline-offset: 5px;
 }
 
 .contact-detail:hover .contact-detail-icon {
@@ -1824,6 +1847,16 @@ body[data-theme="light"] footer {
     }
 }
 
+@keyframes email-metal-sheen {
+    0%, 100% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 0 50%;
+    }
+}
+
 body[data-theme="light"] .contact-box {
     border-color: rgba(124, 58, 237, 0.2);
     background:
@@ -1840,6 +1873,20 @@ body[data-theme="light"] .contact-detail .contact-email-link {
 
 body[data-theme="light"] .contact-info h3 span {
     color: #6d28d9;
+}
+
+body[data-theme="light"] .contact-detail .contact-email-link {
+    border-color: rgba(75, 85, 99, 0.35);
+    background: linear-gradient(110deg, #f3f4f6 15%, #9ca3af 48%, #e5e7eb 82%);
+    background-size: 220% 100%;
+    box-shadow: inset 0 1px #fff, 0 5px 14px rgba(15, 23, 42, 0.12);
+    color: #111827;
+}
+
+body[data-theme="light"] .contact-detail:hover .contact-email-link,
+body[data-theme="light"] .contact-detail:focus-visible .contact-email-link {
+    border-color: rgba(31, 41, 55, 0.6);
+    box-shadow: inset 0 1px #fff, 0 7px 20px rgba(15, 23, 42, 0.2);
 }
 
 body[data-theme="light"] .contact-description {
