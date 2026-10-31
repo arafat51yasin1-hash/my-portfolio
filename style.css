@@ -1466,7 +1466,7 @@ body[data-theme="light"] footer {
     }
 
     .hero {
-        grid-template-columns: minmax(0, 1fr) minmax(104px, 0.52fr);
+        grid-template-columns: minmax(0, 1fr) minmax(136px, 0.7fr);
         gap: 18px 10px;
         padding: 40px 18px 54px;
     }
@@ -1507,11 +1507,6 @@ body[data-theme="light"] footer {
         letter-spacing: 0.12em;
     }
 
-    .card-container,
-    .skills-container {
-        grid-template-columns: 1fr;
-    }
-
     .card,
     .project-card {
         min-height: 0;
@@ -1523,5 +1518,36 @@ body[data-theme="light"] footer {
 
     .contact-form .btn {
         justify-self: stretch;
+    }
+}
+
+@media (min-width: 380px) and (max-width: 520px) {
+    .card-container,
+    .skills-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .card {
+        padding: 22px 16px;
+    }
+
+    .card::before {
+        left: 16px;
+    }
+
+    .skill {
+        padding: 18px 15px;
+    }
+}
+
+@media (max-width: 379px) {
+    .hero {
+        grid-template-columns: minmax(0, 1fr) minmax(104px, 0.52fr);
+    }
+
+    .card-container,
+    .skills-container {
+        grid-template-columns: 1fr;
     }
 }
