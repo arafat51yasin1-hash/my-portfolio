@@ -1015,10 +1015,11 @@ header {
 
 .hero-image img {
     width: 100%;
-    height: clamp(320px, 38vw, 430px);
-    border: 1px solid rgba(226, 232, 240, 0.24);
-    border-radius: 180px 180px 26px 26px;
-    box-shadow: 0 24px 65px rgba(0, 0, 0, 0.4), 0 0 36px rgba(139, 92, 246, 0.14);
+    height: auto;
+    aspect-ratio: 1;
+    border: 6px solid #a855f7;
+    border-radius: 50%;
+    box-shadow: 0 0 35px rgba(124, 58, 237, 0.75);
     animation-duration: 5s;
 }
 
@@ -1321,9 +1322,6 @@ body[data-theme="light"] footer {
         width: min(100%, 310px);
     }
 
-    .hero-image img {
-        height: clamp(280px, 40vw, 360px);
-    }
 }
 
 @media (max-width: 768px) {
@@ -1379,11 +1377,6 @@ body[data-theme="light"] footer {
         width: min(100%, 190px);
         justify-self: end;
         padding: 4px;
-    }
-
-    .hero-image img {
-        height: clamp(160px, 42vw, 220px);
-        border-radius: 100px 100px 20px 20px;
     }
 
     .welcome {
@@ -1480,10 +1473,6 @@ body[data-theme="light"] footer {
 
     .hero-image {
         width: min(100%, 160px);
-    }
-
-    .hero-image img {
-        height: clamp(150px, 43vw, 184px);
     }
 
     .hero h1 {
