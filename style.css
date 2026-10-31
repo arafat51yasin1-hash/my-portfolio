@@ -315,6 +315,31 @@ header {
     background: rgba(17, 26, 53, 0.7);
 }
 
+.social-links a svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.social-links a[aria-label="Instagram"] svg,
+.social-links a[aria-label="WhatsApp"] svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.social-links a[aria-label="Instagram"] .icon-dot {
+    fill: currentColor;
+    stroke: none;
+}
+
+.social-links a[aria-label="WhatsApp"] svg path:last-child {
+    fill: currentColor;
+    stroke: none;
+}
+
 .social-links a:hover {
     background: #a855f7;
     box-shadow: 0 0 20px #a855f7;
@@ -1036,6 +1061,11 @@ header {
     color: #edf0f7;
     font-size: 0.8rem;
     transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.social-links a svg {
+    width: 19px;
+    height: 19px;
 }
 
 .social-links a:hover {
