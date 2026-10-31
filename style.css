@@ -1953,3 +1953,190 @@ body[data-theme="light"] .contact-form {
     max-width: 660px;
     line-height: 1.85;
 }
+
+.contact-box {
+    gap: clamp(30px, 5.5vw, 68px);
+    padding: clamp(26px, 5vw, 56px);
+    border-radius: 26px;
+}
+
+.contact-info {
+    padding: 8px 0;
+}
+
+.contact-art {
+    margin-bottom: 22px;
+}
+
+.contact-info h3 {
+    font-size: clamp(1.9rem, 3.2vw, 2.55rem);
+    line-height: 1.12;
+}
+
+.contact-description {
+    margin-top: 14px;
+    margin-bottom: 24px;
+}
+
+.contact-detail {
+    gap: 14px;
+    margin-top: 15px;
+}
+
+.contact-detail-icon {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+    border-radius: 14px;
+}
+
+.contact-form {
+    gap: 15px;
+    padding: clamp(20px, 3.2vw, 32px);
+    border-color: rgba(148, 163, 184, 0.19);
+    border-radius: 22px;
+    background: linear-gradient(155deg, rgba(10, 15, 31, 0.72), rgba(8, 13, 28, 0.5));
+}
+
+.contact-form-heading {
+    margin-bottom: 3px;
+}
+
+.contact-form-eyebrow {
+    margin: 0 0 6px;
+    color: #a78bfa !important;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    line-height: 1.5;
+}
+
+.contact-form-heading h3 {
+    margin: 0;
+    color: #f8fafc;
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    letter-spacing: -0.035em;
+    line-height: 1.35;
+}
+
+.contact-form-heading > p:last-child {
+    margin: 6px 0 0;
+    color: #94a3b8 !important;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 14px 15px;
+    border-color: rgba(148, 163, 184, 0.22);
+    border-radius: 12px;
+    background: rgba(3, 7, 18, 0.42);
+    font-size: 0.88rem;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #8490a4;
+    opacity: 1;
+}
+
+.contact-form textarea {
+    min-height: 132px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: rgba(167, 139, 250, 0.72);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.13);
+}
+
+.contact-form .contact-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 164px;
+    justify-self: start;
+    border: 1px solid rgba(196, 181, 253, 0.3);
+    cursor: pointer;
+    font: inherit;
+}
+
+.contact-submit svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+    transition: transform 0.2s ease;
+}
+
+.contact-submit:hover svg {
+    transform: translateX(3px);
+}
+
+.contact-submit:focus-visible {
+    outline: 2px solid #c4b5fd;
+    outline-offset: 3px;
+}
+
+.contact-form .form-note {
+    margin: -2px 0 0;
+    font-size: 0.75rem;
+    line-height: 1.55;
+}
+
+body[data-theme="light"] .contact-form {
+    border-color: rgba(100, 116, 139, 0.2);
+    background: linear-gradient(155deg, rgba(255, 255, 255, 0.88), rgba(241, 245, 249, 0.8));
+}
+
+body[data-theme="light"] .contact-form-heading h3 {
+    color: #172033;
+}
+
+body[data-theme="light"] .contact-form-heading > p:last-child {
+    color: #64748b !important;
+}
+
+body[data-theme="light"] .contact-form input,
+body[data-theme="light"] .contact-form textarea {
+    border-color: rgba(100, 116, 139, 0.24);
+    background: rgba(255, 255, 255, 0.82);
+}
+
+body[data-theme="light"] .contact-form input::placeholder,
+body[data-theme="light"] .contact-form textarea::placeholder {
+    color: #64748b;
+}
+
+@media (max-width: 700px) {
+    .contact-art {
+        margin-bottom: 18px;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 379px) {
+    .contact-form .contact-submit {
+        width: 100%;
+        min-width: 0;
+        gap: 8px;
+        padding: 11px 12px;
+        font-size: 0.85rem;
+        justify-self: stretch;
+        white-space: nowrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-submit svg {
+        transition: none;
+    }
+}
