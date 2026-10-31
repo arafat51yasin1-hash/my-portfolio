@@ -837,12 +837,6 @@ body[data-theme="light"] footer {
 
 /* POLISHED RESPONSIVE DESIGN */
 
-@property --profile-frame-angle {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
-}
-
 body {
     background:
         radial-gradient(ellipse at 8% 5%, rgba(124, 58, 237, 0.16), transparent 34%),
@@ -1253,32 +1247,10 @@ header {
     width: 100%;
     height: auto;
     aspect-ratio: 1;
-    border: 6px solid transparent;
+    border: 6px solid #a855f7;
     border-radius: 50%;
     box-shadow: 0 0 35px rgba(124, 58, 237, 0.75);
     animation-duration: 5s;
-}
-
-.hero-image::after {
-    position: absolute;
-    inset: 10px;
-    z-index: 2;
-    padding: 6px;
-    border-radius: 50%;
-    background: conic-gradient(from -90deg, #a855f7 0deg var(--profile-frame-angle), transparent var(--profile-frame-angle) 360deg);
-    content: "";
-    pointer-events: none;
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    animation: profile-frame-draw 1.8s cubic-bezier(0.2, 0.75, 0.25, 1) both;
-}
-
-@keyframes profile-frame-draw {
-    to {
-        --profile-frame-angle: 360deg;
-    }
 }
 
 .social-links {
@@ -1668,10 +1640,6 @@ body[data-theme="light"] footer {
         width: min(100%, 190px);
         justify-self: end;
         padding: 4px;
-    }
-
-    .hero-image::after {
-        inset: 4px;
     }
 
     .welcome {
@@ -2208,10 +2176,6 @@ body[data-theme="light"] .contact-form {
         animation: none;
     }
 
-    .hero-image::after {
-        animation: none;
-        --profile-frame-angle: 360deg;
-    }
 }
 
 .about-card-container {
