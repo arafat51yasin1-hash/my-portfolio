@@ -1939,3 +1939,17 @@ body[data-theme="light"] .contact-form {
         animation: none;
     }
 }
+
+.about-card-container {
+    grid-template-columns: minmax(0, 760px);
+    justify-content: center;
+}
+
+.about-card h3 {
+    margin-bottom: 12px;
+}
+
+.about-card p {
+    max-width: 660px;
+    line-height: 1.85;
+}
