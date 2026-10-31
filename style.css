@@ -1075,7 +1075,7 @@ header {
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    font-size: 0.82rem;
+    font-size: 0.96rem;
     font-weight: 800;
     letter-spacing: 0.045em;
     text-shadow: 0 1px 0 #8e2436, 0 3px 9px rgba(255, 72, 94, 0.38);
@@ -1647,6 +1647,10 @@ body[data-theme="light"] footer {
         margin-bottom: 13px;
         font-size: 0.57rem;
         letter-spacing: 0.1em;
+    }
+
+    .welcome-greeting {
+        font-size: 0.86rem;
     }
 
     .hero h1 {
@@ -2365,7 +2369,7 @@ body[data-theme="light"] .contact-form textarea::placeholder {
     }
 
     .welcome-greeting {
-        font-size: 0.68rem;
+        font-size: 0.76rem;
     }
 
     .welcome-caption {
