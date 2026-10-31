@@ -66,6 +66,33 @@ if (profileImage && !prefersReducedMotion) {
 
 const menuButton = document.querySelector(".menu-icon");
 const navLinks = document.querySelector(".nav-links");
+const themeButton = document.querySelector(".theme-toggle");
+const savedTheme = localStorage.getItem("portfolio-theme");
+
+if (savedTheme === "light" || savedTheme === "dark") {
+    document.body.dataset.theme = savedTheme;
+}
+
+function updateThemeButton() {
+    if (!themeButton) {
+        return;
+    }
+
+    const isDark = document.body.dataset.theme !== "light";
+    themeButton.textContent = isDark ? "☀" : "☾";
+    themeButton.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    themeButton.setAttribute("aria-pressed", String(isDark));
+}
+
+if (themeButton) {
+    updateThemeButton();
+    themeButton.addEventListener("click", () => {
+        const nextTheme = document.body.dataset.theme === "light" ? "dark" : "light";
+        document.body.dataset.theme = nextTheme;
+        localStorage.setItem("portfolio-theme", nextTheme);
+        updateThemeButton();
+    });
+}
 
 function closeMenu() {
     if (!menuButton || !navLinks) {
