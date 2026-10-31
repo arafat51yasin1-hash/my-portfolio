@@ -901,6 +901,12 @@ header {
     padding: 88px 48px 104px;
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    grid-template-areas:
+        "intro portrait"
+        "details portrait";
+    grid-template-rows: auto auto;
+    align-content: center;
+    align-items: center;
     gap: clamp(42px, 8vw, 112px);
 }
 
@@ -911,8 +917,17 @@ header {
     background: radial-gradient(ellipse, rgba(124, 58, 237, 0.2), transparent 70%);
 }
 
-.hero-text {
+.hero-intro {
+    grid-area: intro;
     max-width: 700px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-details {
+    grid-area: details;
+    position: relative;
+    z-index: 1;
 }
 
 .welcome,
@@ -1009,6 +1024,7 @@ header {
 }
 
 .hero-image {
+    grid-area: portrait;
     justify-self: center;
     width: min(100%, 390px);
     padding: 14px;
@@ -1029,26 +1045,6 @@ header {
     border-radius: 190px 190px 32px 32px;
     box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42), 0 0 50px rgba(139, 92, 246, 0.16);
     animation-duration: 5.5s;
-}
-
-.portrait-badge {
-    position: absolute;
-    right: -2px;
-    bottom: 42px;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 12px 16px;
-    border: 1px solid rgba(203, 213, 225, 0.2);
-    border-radius: 999px;
-    background: rgba(13, 18, 35, 0.82);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
-    backdrop-filter: blur(16px);
-    color: #e2e8f0;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
 }
 
 .social-links {
@@ -1333,12 +1329,6 @@ body[data-theme="light"] .contact-email-link {
     color: #172033;
 }
 
-body[data-theme="light"] .portrait-badge {
-    border-color: rgba(100, 116, 139, 0.18);
-    background: rgba(255, 255, 255, 0.88);
-    color: #334155;
-}
-
 body[data-theme="light"] footer {
     border-color: rgba(100, 116, 139, 0.14);
     background: rgba(226, 232, 240, 0.58);
@@ -1374,51 +1364,60 @@ body[data-theme="light"] footer {
     }
 
     .hero {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 70px 28px 72px;
-        text-align: center;
+        grid-template-columns: minmax(0, 1fr) minmax(112px, 0.5fr);
+        grid-template-areas:
+            "intro portrait"
+            "details details";
+        grid-template-rows: auto auto;
+        align-items: center;
+        gap: 24px 16px;
+        padding: 56px 28px 72px;
+        text-align: left;
     }
 
-    .hero-text {
-        justify-self: center;
+    .hero-intro {
+        min-width: 0;
     }
 
     .welcome {
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 7px;
+        font-size: 0.58rem;
+        letter-spacing: 0.12em;
     }
 
     .hero h1 {
-        font-size: clamp(2.8rem, 10vw, 4.2rem);
+        font-size: clamp(1.8rem, 6.4vw, 2.8rem);
+        letter-spacing: -0.06em;
     }
 
     .hero h1 span {
-        display: inline;
+        display: block;
     }
 
     .hero p {
-        margin-right: auto;
-        margin-left: auto;
+        max-width: none;
+    }
+
+    .hero-details {
+        width: 100%;
+    }
+
+    .hero-image {
+        width: min(100%, 190px);
+        justify-self: end;
+        padding: 4px;
+    }
+
+    .hero-image img {
+        height: clamp(150px, 42vw, 215px);
+        border-radius: 110px 110px 22px 22px;
     }
 
     .hero-meta,
     .hero-buttons,
     .social-links {
-        justify-content: center;
-    }
-
-    .hero-image {
-        width: min(78%, 330px);
-        grid-row: 1;
-    }
-
-    .hero-image img {
-        height: 370px;
-    }
-
-    .portrait-badge {
-        right: -12px;
-        bottom: 28px;
+        justify-content: flex-start;
     }
 
     .section {
@@ -1432,30 +1431,52 @@ body[data-theme="light"] footer {
 
 @media (max-width: 560px) {
     .hero {
-        padding: 54px 22px 64px;
+        gap: 20px 12px;
+        padding: 44px 20px 60px;
     }
 
     .hero-image {
-        width: min(82%, 280px);
+        width: min(100%, 160px);
     }
 
     .hero-image img {
-        height: 320px;
-    }
-
-    .portrait-badge {
-        right: -18px;
-        bottom: 22px;
-        padding: 10px 12px;
-        font-size: 0.6rem;
+        height: clamp(145px, 44vw, 185px);
     }
 
     .hero h1 {
-        font-size: clamp(2.45rem, 11vw, 3.4rem);
+        font-size: clamp(1.7rem, 7.3vw, 2.25rem);
     }
 
     .hero h2 {
-        min-height: 34px;
+        min-height: 42px;
+        margin: 12px 0 0;
+        font-size: clamp(0.95rem, 4.2vw, 1.2rem);
+    }
+
+    .hero-details > p {
+        font-size: 0.95rem;
+    }
+
+    .hero-meta span {
+        font-size: 0.7rem;
+    }
+
+    .hero-buttons {
+        gap: 8px;
+    }
+
+    .hero-buttons .btn {
+        padding: 11px 15px;
+        font-size: 0.87rem;
+    }
+
+    .social-links {
+        gap: 8px;
+    }
+
+    .social-links a {
+        width: 38px;
+        height: 38px;
     }
 
     .section {
