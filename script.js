@@ -127,6 +127,33 @@ document.querySelectorAll(".nav-links a").forEach(link => {
     });
 });
 
+const sectionLinks = Array.from(document.querySelectorAll(".nav-links a"));
+const linkedSections = sectionLinks
+    .map(link => document.getElementById(link.hash.slice(1)))
+    .filter(section => section !== null);
+
+if (linkedSections.length && "IntersectionObserver" in window) {
+    const navigationObserver = new IntersectionObserver(entries => {
+        const activeEntry = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((first, second) => first.boundingClientRect.top - second.boundingClientRect.top)[0];
+
+        if (!activeEntry) {
+            return;
+        }
+
+        sectionLinks.forEach(link => {
+            if (link.hash === `#${activeEntry.target.id}`) {
+                link.setAttribute("aria-current", "location");
+            } else {
+                link.removeAttribute("aria-current");
+            }
+        });
+    }, { rootMargin: "-20% 0px -65% 0px" });
+
+    linkedSections.forEach(section => navigationObserver.observe(section));
+}
+
 const revealItems = document.querySelectorAll("[data-reveal]");
 
 if (revealItems.length && "IntersectionObserver" in window && !prefersReducedMotion) {

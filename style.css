@@ -879,6 +879,11 @@ header {
     font-size: 0.86rem;
 }
 
+.nav-links a[aria-current="location"] {
+    background: rgba(168, 85, 247, 0.18);
+    color: #fff;
+}
+
 .nav-links a:hover {
     color: #fff;
     background: rgba(168, 85, 247, 0.14);
@@ -1251,6 +1256,11 @@ body[data-theme="light"] .menu-icon {
 
 body[data-theme="light"] .nav-links a {
     color: #475569;
+}
+
+body[data-theme="light"] .nav-links a[aria-current="location"] {
+    background: rgba(124, 58, 237, 0.11);
+    color: #6d28d9;
 }
 
 body[data-theme="light"] .nav-links a:hover {
