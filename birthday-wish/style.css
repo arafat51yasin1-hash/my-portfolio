@@ -25,6 +25,123 @@ body {
         radial-gradient(circle at 18% 12%, rgb(255 255 255 / 55%), transparent 30%),
         radial-gradient(circle at 86% 82%, rgb(255 63 140 / 35%), transparent 28%),
         linear-gradient(140deg, #ffc1d6, #ff85b3 58%, #ffafd0);
+    background-size: 130% 130%, 130% 130%, 130% 130%;
+    background-position: 0% 0%, 100% 100%, 0% 50%;
+    animation: background-drift 20s ease-in-out infinite alternate;
+}
+
+body:not(.gift-opened) {
+    overflow: hidden;
+}
+
+.gift-gate {
+    position: fixed;
+    z-index: 10;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 18% 12%, rgb(255 255 255 / 62%), transparent 30%),
+        radial-gradient(circle at 86% 82%, rgb(255 63 140 / 32%), transparent 28%),
+        linear-gradient(140deg, #ffc1d6, #ff85b3 58%, #ffafd0);
+    opacity: 1;
+    transition: opacity 450ms ease;
+}
+
+.gift-gate[hidden] {
+    display: none;
+}
+
+.gift-gate.is-dismissed {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.gift-gate-content {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    padding: 28px;
+    text-align: center;
+}
+
+.gift-gate-kicker,
+.gift-gate h1,
+.gift-gate-button {
+    animation: gate-fade 700ms ease-out both;
+}
+
+.gift-gate h1 {
+    animation-delay: 120ms;
+}
+
+.gift-gate-button {
+    animation-delay: 240ms;
+}
+
+.gift-gate-kicker {
+    margin: 0;
+    color: #a93471;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+}
+
+.gift-gate h1 {
+    margin: 0;
+    color: #8e2456;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.gift-gate-button {
+    display: grid;
+    justify-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    padding: 25px 32px;
+    border: 0;
+    border-radius: 22px;
+    background: rgb(255 255 255 / 30%);
+    box-shadow: 0 20px 55px rgb(183 38 105 / 18%), inset 0 1px rgb(255 255 255 / 55%);
+    color: #8e2456;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease;
+}
+
+.gift-gate-button:hover {
+    transform: translateY(-4px);
+    background: rgb(255 255 255 / 45%);
+}
+
+.gift-gate-button:focus-visible {
+    outline: 3px solid #a91f61;
+    outline-offset: 5px;
+}
+
+.gift-gate-button:disabled {
+    cursor: default;
+}
+
+.gift-gate-button .gift-box {
+    --gift-scale: 1.65;
+    transform: scale(var(--gift-scale));
+    animation: gift-hover 3s ease-in-out infinite;
+}
+
+.gift-gate-button .gift-box.is-opening {
+    animation: none;
+}
+
+.gift-gate-hint {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    animation: hint-pulse 2.2s ease-in-out infinite;
 }
 
 .birthday-stage {
@@ -80,6 +197,7 @@ body {
     border-radius: 50%;
     background: var(--color-gold);
     box-shadow: 0 0 12px rgb(243 200 120 / 80%);
+    animation: dot-pulse 2.4s ease-in-out infinite;
 }
 
 .issue {
@@ -163,6 +281,7 @@ body {
     font-size: 0.55rem;
     font-weight: 600;
     letter-spacing: 0.24em;
+    animation: caption-float 4s ease-in-out infinite;
 }
 
 .art-star {
@@ -248,14 +367,6 @@ h1 em {
     max-width: 340px;
     margin: 20px 0 25px;
     color: #963f68;
-}
-
-.gift-wrap {
-    height: 96px;
-    display: grid;
-    place-items: center;
-    margin: -8px 0 14px;
-    perspective: 500px;
 }
 
 .gift-box {
@@ -397,6 +508,11 @@ h1 em {
     outline-offset: 4px;
 }
 
+body.gift-opened .surprise-button span {
+    display: inline-block;
+    animation: arrow-drift 2.2s ease-in-out infinite;
+}
+
 .birthday-message {
     margin-top: 20px;
     padding: 16px 18px;
@@ -433,6 +549,7 @@ h1 em {
 .footer-star {
     color: var(--color-gold);
     font-size: 1rem;
+    animation: footer-spin 12s linear infinite;
 }
 
 .confetti-layer {
@@ -456,6 +573,16 @@ h1 em {
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes birthday-reveal {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes content-reveal {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes message-arrive {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -471,6 +598,45 @@ h1 em {
     0% { opacity: 0; scale: 0.5; }
     45% { opacity: 1; scale: 1.25; }
     100% { opacity: 0; scale: 0.8; }
+}
+
+@keyframes background-drift {
+    from { background-position: 0% 0%, 100% 100%, 0% 50%; }
+    to { background-position: 100% 100%, 0% 0%, 100% 50%; }
+}
+
+@keyframes gate-fade {
+    from { opacity: 0; filter: blur(5px); }
+    to { opacity: 1; filter: blur(0); }
+}
+
+@keyframes gift-hover {
+    0%, 100% { transform: scale(var(--gift-scale)) translateY(0); }
+    50% { transform: scale(var(--gift-scale)) translateY(-10px); }
+}
+
+@keyframes hint-pulse {
+    0%, 100% { opacity: 0.72; }
+    50% { opacity: 1; }
+}
+
+@keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 8px rgb(255 79 145 / 45%); }
+    50% { box-shadow: 0 0 16px rgb(255 79 145 / 85%); }
+}
+
+@keyframes caption-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes arrow-drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(3px, -3px); }
+}
+
+@keyframes footer-spin {
+    to { transform: rotate(360deg); }
 }
 
 @keyframes planet-float {
@@ -492,6 +658,22 @@ h1 em {
     to { transform: translate3d(var(--drift), 105vh, 0) rotate(720deg); opacity: 0; }
 }
 
+body.gift-opened .birthday-card {
+    animation: birthday-reveal 900ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+body.gift-opened .card-header {
+    animation: content-reveal 650ms ease-out 120ms both;
+}
+
+body.gift-opened .card-content {
+    animation: content-reveal 700ms ease-out 220ms both;
+}
+
+body.gift-opened .card-footer {
+    animation: content-reveal 650ms ease-out 340ms both;
+}
+
 @media (max-width: 700px) {
     body {
         padding: 20px 14px;
@@ -500,6 +682,14 @@ h1 em {
 
     .birthday-card {
         padding: 22px 22px 18px;
+    }
+
+    .gift-gate-button {
+        padding: 22px 28px;
+    }
+
+    .gift-gate-button .gift-box {
+        --gift-scale: 1.45;
     }
 
     .card-content {
