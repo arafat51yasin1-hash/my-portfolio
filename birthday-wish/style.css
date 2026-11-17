@@ -334,15 +334,12 @@ body:not(.gift-opened) {
     font-weight: 800;
     letter-spacing: 0.19em;
     text-transform: uppercase;
-    text-shadow: 1px 1px 0 #d34785, 2px 2px 0 #bd356f, 0 5px 12px rgb(177 42 105 / 30%);
-    transform-style: preserve-3d;
-    animation: destiny-3d 3.2s ease-in-out infinite;
+    text-shadow: 0 5px 12px rgb(177 42 105 / 30%);
 }
 
 .destiny-word {
     display: inline-block;
     opacity: 0;
-    backface-visibility: hidden;
 }
 
 body.gift-opened .destiny-from-left {
@@ -703,21 +700,16 @@ body.gift-opened .surprise-button span {
     50% { transform: translateY(-5px) scale(1.025); }
 }
 
-@keyframes destiny-3d {
-    0%, 100% { transform: perspective(420px) rotateY(-10deg) rotateX(3deg); }
-    50% { transform: perspective(420px) rotateY(10deg) rotateX(-3deg) translateY(-2px); }
-}
-
 @keyframes destiny-left-enter {
-    from { opacity: 0; transform: translate3d(-28px, 16px, 24px) rotateY(-35deg); }
-    75% { opacity: 1; transform: translate3d(3px, -2px, 0) rotateY(5deg); }
-    to { opacity: 1; transform: translate3d(0, 0, 0) rotateY(0); }
+    from { opacity: 0; transform: translate(-28px, 16px); }
+    75% { opacity: 1; transform: translate(3px, -2px); }
+    to { opacity: 1; transform: translate(0, 0); }
 }
 
 @keyframes destiny-right-enter {
-    from { opacity: 0; transform: translate3d(28px, 16px, 24px) rotateY(35deg); }
-    75% { opacity: 1; transform: translate3d(-3px, -2px, 0) rotateY(-5deg); }
-    to { opacity: 1; transform: translate3d(0, 0, 0) rotateY(0); }
+    from { opacity: 0; transform: translate(28px, 16px); }
+    75% { opacity: 1; transform: translate(-3px, -2px); }
+    to { opacity: 1; transform: translate(0, 0); }
 }
 
 @keyframes confetti-fall {
