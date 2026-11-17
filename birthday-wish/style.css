@@ -352,9 +352,25 @@ h1 em {
 .recipient-name {
     display: inline-block;
     max-width: 100%;
+    background: linear-gradient(100deg, #ff86bd 10%, #fff5fa 48%, #ff5dad 82%);
+    background-size: 220% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     font-size: 0.58em;
     letter-spacing: -0.045em;
     line-height: 1.12;
+    padding: 0.05em 0.08em;
+    margin: 0 -0.08em;
+    text-shadow:
+        0 0 4px rgb(255 112 166 / 95%),
+        0 0 12px rgb(255 112 166 / 80%),
+        0 0 24px rgb(255 79 145 / 65%),
+        0 0 38px rgb(255 79 145 / 45%);
+    animation:
+        neon-name-pulse 1.8s ease-in-out infinite alternate,
+        name-shimmer 3.2s linear infinite,
+        name-float 2.6s ease-in-out infinite;
 }
 
 .intro,
@@ -652,6 +668,31 @@ body.gift-opened .surprise-button span {
 @keyframes star-pulse {
     from { opacity: 0.45; scale: 0.8; }
     to { opacity: 1; scale: 1.15; }
+}
+
+@keyframes neon-name-pulse {
+    from {
+        text-shadow:
+            0 0 4px rgb(255 112 166 / 85%),
+            0 0 10px rgb(255 112 166 / 65%),
+            0 0 20px rgb(255 79 145 / 55%);
+    }
+    to {
+        text-shadow:
+            0 0 5px rgb(255 255 255 / 95%),
+            0 0 12px rgb(255 112 166 / 95%),
+            0 0 28px rgb(255 79 145 / 85%),
+            0 0 44px rgb(255 79 145 / 60%);
+    }
+}
+
+@keyframes name-shimmer {
+    to { background-position: -220% center; }
+}
+
+@keyframes name-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.025); }
 }
 
 @keyframes confetti-fall {
