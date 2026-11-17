@@ -179,7 +179,7 @@ body:not(.gift-opened) {
 .card-footer {
     margin: 0;
     color: var(--color-muted);
-    font-size: 0.63rem;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.16em;
 }
@@ -328,11 +328,16 @@ body:not(.gift-opened) {
 }
 
 .eyebrow {
+    display: inline-block;
     margin: 0 0 15px;
     color: var(--color-gold);
-    font-size: 0.67rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 800;
     letter-spacing: 0.19em;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 #d34785, 2px 2px 0 #bd356f, 0 5px 12px rgb(177 42 105 / 30%);
+    transform-style: preserve-3d;
+    animation: destiny-3d 3.2s ease-in-out infinite;
 }
 
 h1 {
@@ -368,7 +373,7 @@ h1 em {
 
 .intro,
 .birthday-message p {
-    font-size: 0.96rem;
+    font-size: 1rem;
     line-height: 1.8;
 }
 
@@ -500,7 +505,7 @@ h1 em {
     box-shadow: 0 10px 28px rgb(183 38 105 / 24%);
     color: #fff;
     font: inherit;
-    font-size: 0.86rem;
+    font-size: 0.94rem;
     font-weight: 600;
     cursor: pointer;
     transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
@@ -533,7 +538,7 @@ body.gift-opened .surprise-button span {
 .birthday-message p {
     margin: 0;
     color: #7e3158;
-    font-size: 0.86rem;
+    font-size: 0.94rem;
 }
 
 .birthday-message .message-title {
@@ -549,10 +554,11 @@ body.gift-opened .surprise-button span {
 }
 
 .card-footer {
+    flex-wrap: wrap;
     gap: 12px;
     padding-top: 18px;
     border-top: 1px solid rgb(204 67 126 / 18%);
-    font-size: 0.56rem;
+    font-size: 0.64rem;
 }
 
 .footer-star {
@@ -684,6 +690,11 @@ body.gift-opened .surprise-button span {
     50% { transform: translateY(-5px) scale(1.025); }
 }
 
+@keyframes destiny-3d {
+    0%, 100% { transform: perspective(420px) rotateY(-10deg) rotateX(3deg); }
+    50% { transform: perspective(420px) rotateY(10deg) rotateX(-3deg) translateY(-2px); }
+}
+
 @keyframes confetti-fall {
     to { transform: translate3d(var(--drift), 105vh, 0) rotate(720deg); opacity: 0; }
 }
@@ -746,8 +757,12 @@ body.gift-opened .card-footer {
         text-align: center;
     }
 
+    .eyebrow {
+        transform-origin: center;
+    }
+
     h1 {
-        font-size: clamp(3.5rem, 14vw, 5rem);
+        font-size: clamp(2.8rem, 12vw, 4.8rem);
     }
 
     .intro {
@@ -771,11 +786,11 @@ body.gift-opened .card-footer {
     .edition,
     .issue,
     .card-footer {
-        font-size: 0.5rem;
+        font-size: 0.58rem;
     }
 
     .card-footer {
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
     }
 }
 
