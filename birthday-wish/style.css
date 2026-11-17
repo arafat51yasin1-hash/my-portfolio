@@ -340,6 +340,20 @@ body:not(.gift-opened) {
     animation: destiny-3d 3.2s ease-in-out infinite;
 }
 
+.destiny-word {
+    display: inline-block;
+    opacity: 0;
+    backface-visibility: hidden;
+}
+
+body.gift-opened .destiny-from-left {
+    animation: destiny-left-enter 750ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+body.gift-opened .destiny-from-right {
+    animation: destiny-right-enter 750ms cubic-bezier(0.2, 0.75, 0.25, 1) 140ms both;
+}
+
 h1 {
     margin: 0;
     font-family: Georgia, "Times New Roman", serif;
@@ -693,6 +707,18 @@ body.gift-opened .surprise-button span {
 @keyframes destiny-3d {
     0%, 100% { transform: perspective(420px) rotateY(-10deg) rotateX(3deg); }
     50% { transform: perspective(420px) rotateY(10deg) rotateX(-3deg) translateY(-2px); }
+}
+
+@keyframes destiny-left-enter {
+    from { opacity: 0; transform: translate3d(-28px, 16px, 24px) rotateY(-35deg); }
+    75% { opacity: 1; transform: translate3d(3px, -2px, 0) rotateY(5deg); }
+    to { opacity: 1; transform: translate3d(0, 0, 0) rotateY(0); }
+}
+
+@keyframes destiny-right-enter {
+    from { opacity: 0; transform: translate3d(28px, 16px, 24px) rotateY(35deg); }
+    75% { opacity: 1; transform: translate3d(-3px, -2px, 0) rotateY(-5deg); }
+    to { opacity: 1; transform: translate3d(0, 0, 0) rotateY(0); }
 }
 
 @keyframes confetti-fall {
