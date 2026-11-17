@@ -1,0 +1,447 @@
+:root {
+    color-scheme: light;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: #6d1742;
+    background: #ffb4cf;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --color-gold: #ff4f91;
+    --color-muted: #9d4770;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow-x: hidden;
+    padding: 44px 20px;
+    background:
+        radial-gradient(circle at 18% 12%, rgb(255 255 255 / 55%), transparent 30%),
+        radial-gradient(circle at 86% 82%, rgb(255 63 140 / 35%), transparent 28%),
+        linear-gradient(140deg, #ffc1d6, #ff85b3 58%, #ffafd0);
+}
+
+.birthday-stage {
+    width: min(100%, 1000px);
+}
+
+.birthday-card {
+    position: relative;
+    padding: 30px clamp(24px, 5vw, 58px) 24px;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 45%);
+    border-radius: 20px;
+    background:
+        radial-gradient(ellipse at 20% 54%, rgb(255 255 255 / 42%), transparent 38%),
+        linear-gradient(125deg, #fff2f7, #ffc7dc 58%, #ffacd1);
+    box-shadow: 0 35px 100px rgb(190 45 111 / 28%), 0 0 48px rgb(255 255 255 / 30%), inset 0 1px rgb(255 255 255 / 70%);
+    animation: card-arrive 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.card-header,
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header {
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(204 67 126 / 18%);
+}
+
+.edition,
+.issue,
+.card-footer {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+}
+
+.edition {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edition-dot {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--color-gold);
+    box-shadow: 0 0 12px rgb(243 200 120 / 80%);
+}
+
+.issue {
+    white-space: nowrap;
+}
+
+.issue span {
+    padding: 0 4px;
+    color: #b85b86;
+}
+
+.card-content {
+    min-height: 490px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(20px, 5vw, 68px);
+    padding: 25px 4%;
+}
+
+.orbit-art {
+    position: relative;
+    width: min(100%, 390px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    justify-self: center;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgb(255 255 255 / 42%), transparent 62%),
+        radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0%) 0 56%, rgb(255 255 255 / 45%) 56.4% 56.8%, transparent 57%);
+}
+
+.orbit {
+    position: absolute;
+    inset: 14%;
+    border: 1px solid rgb(209 40 116 / 28%);
+    border-radius: 50%;
+    transform: rotate(-28deg) scaleY(0.57);
+}
+
+.orbit-one {
+    animation: orbit-turn 22s linear infinite;
+}
+
+.orbit-two {
+    inset: 6%;
+    border-color: rgb(255 255 255 / 65%);
+    transform: rotate(38deg) scaleY(0.68);
+    animation: orbit-turn 30s linear infinite reverse;
+}
+
+.orbit-three {
+    inset: 23%;
+    border-color: rgb(255 255 255 / 11%);
+    transform: rotate(72deg) scaleY(0.56);
+}
+
+.birthday-planet {
+    width: 112px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgb(255 255 255 / 80%);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 34% 26%, #fff7fa 0, #ffb4ce 22%, #ff6da2 62%, #d83f80 100%);
+    box-shadow: 0 0 35px rgb(255 79 145 / 42%), inset -10px -12px 24px rgb(177 35 99 / 25%);
+    animation: planet-float 4s ease-in-out infinite;
+}
+
+.birthday-planet span {
+    font-size: 3.2rem;
+    filter: drop-shadow(0 5px 5px rgb(37 22 32 / 25%));
+}
+
+.orbit-caption {
+    position: absolute;
+    bottom: 8%;
+    color: #9d4770;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+}
+
+.art-star {
+    position: absolute;
+    z-index: 1;
+    color: var(--color-gold);
+    text-shadow: 0 0 14px rgb(243 200 120 / 65%);
+    animation: star-pulse 2.4s ease-in-out infinite alternate;
+}
+
+.star-one {
+    top: 20%;
+    left: 18%;
+    font-size: 1.1rem;
+}
+
+.star-two {
+    top: 29%;
+    right: 13%;
+    color: #fff4f8;
+    font-size: 1.8rem;
+    animation-delay: 600ms;
+}
+
+.star-three {
+    right: 22%;
+    bottom: 20%;
+    font-size: 0.9rem;
+    animation-delay: 1s;
+}
+
+.star-four {
+    left: 18%;
+    bottom: 30%;
+    color: #a93471;
+    font-size: 2rem;
+    animation-delay: 350ms;
+}
+
+.greeting {
+    position: relative;
+    z-index: 1;
+    padding: 28px 0;
+}
+
+.eyebrow {
+    margin: 0 0 15px;
+    color: var(--color-gold);
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.19em;
+}
+
+h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3.5rem, 7vw, 5.4rem);
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.065em;
+}
+
+h1 em {
+    color: #b12a69;
+    font-weight: 400;
+}
+
+.recipient-name {
+    display: inline-block;
+    max-width: 100%;
+    font-size: 0.58em;
+    letter-spacing: -0.045em;
+    line-height: 1.12;
+}
+
+.intro,
+.birthday-message p {
+    font-size: 0.96rem;
+    line-height: 1.8;
+}
+
+.intro {
+    max-width: 340px;
+    margin: 20px 0 25px;
+    color: #963f68;
+}
+
+.actions {
+    display: grid;
+    justify-items: start;
+    gap: 12px;
+}
+
+.surprise-button {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 19px;
+    border: 1px solid rgb(255 255 255 / 80%);
+    border-radius: 6px;
+    background: linear-gradient(110deg, #ff5e9d, #ea3f85);
+    box-shadow: 0 10px 28px rgb(183 38 105 / 24%);
+    color: #fff;
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.surprise-button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(110deg, #ff78ac, #f04f92);
+    box-shadow: 0 15px 34px rgb(183 38 105 / 32%);
+}
+
+.surprise-button:focus-visible {
+    outline: 3px solid #b12a69;
+    outline-offset: 4px;
+}
+
+.birthday-message {
+    margin-top: 20px;
+    padding: 16px 18px;
+    border-left: 2px solid var(--color-gold);
+    background: rgb(255 255 255 / 35%);
+    animation: message-arrive 350ms ease-out both;
+}
+
+.birthday-message p {
+    margin: 0;
+    color: #7e3158;
+    font-size: 0.86rem;
+}
+
+.birthday-message .message-title {
+    margin-bottom: 6px;
+    color: #a91f61;
+    font-weight: 700;
+}
+
+.birthday-message .sign-off {
+    margin-top: 10px;
+    color: #b12a69;
+    font-weight: 600;
+}
+
+.card-footer {
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid rgb(204 67 126 / 18%);
+    font-size: 0.56rem;
+}
+
+.footer-star {
+    color: var(--color-gold);
+    font-size: 1rem;
+}
+
+.confetti-layer {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    width: 8px;
+    height: 12px;
+    border-radius: 2px;
+    animation: confetti-fall 2.8s ease-in forwards;
+}
+
+@keyframes card-arrive {
+    from { opacity: 0; transform: translateY(22px) scale(0.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes message-arrive {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes planet-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@keyframes orbit-turn {
+    from { rotate: 0deg; }
+    to { rotate: 360deg; }
+}
+
+@keyframes star-pulse {
+    from { opacity: 0.45; scale: 0.8; }
+    to { opacity: 1; scale: 1.15; }
+}
+
+@keyframes confetti-fall {
+    to { transform: translate3d(var(--drift), 105vh, 0) rotate(720deg); opacity: 0; }
+}
+
+@media (max-width: 700px) {
+    body {
+        padding: 20px 14px;
+        align-items: start;
+    }
+
+    .birthday-card {
+        padding: 22px 22px 18px;
+    }
+
+    .card-content {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 12px 0 22px;
+    }
+
+    .orbit-art {
+        width: min(76vw, 290px);
+    }
+
+    .birthday-planet {
+        width: 88px;
+    }
+
+    .birthday-planet span {
+        font-size: 2.7rem;
+    }
+
+    .greeting {
+        padding: 2px 3px 8px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: clamp(3.5rem, 14vw, 5rem);
+    }
+
+    .intro {
+        margin: 16px auto 22px;
+    }
+
+    .actions {
+        justify-items: center;
+    }
+
+    .birthday-message {
+        text-align: left;
+    }
+}
+
+@media (max-width: 420px) {
+    .card-header {
+        align-items: flex-start;
+    }
+
+    .edition,
+    .issue,
+    .card-footer {
+        font-size: 0.5rem;
+    }
+
+    .card-footer {
+        letter-spacing: 0.1em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
