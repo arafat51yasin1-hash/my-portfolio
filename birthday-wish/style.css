@@ -352,16 +352,10 @@ h1 em {
 .recipient-name {
     display: inline-block;
     max-width: 100%;
-    background: linear-gradient(100deg, #ff86bd 10%, #fff5fa 48%, #ff5dad 82%);
-    background-size: 220% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+    color: #b12a69;
     font-size: 0.58em;
     letter-spacing: -0.045em;
     line-height: 1.12;
-    padding: 0.05em 0.08em;
-    margin: 0 -0.08em;
     text-shadow:
         0 0 4px rgb(255 112 166 / 95%),
         0 0 12px rgb(255 112 166 / 80%),
@@ -369,7 +363,6 @@ h1 em {
         0 0 38px rgb(255 79 145 / 45%);
     animation:
         neon-name-pulse 1.8s ease-in-out infinite alternate,
-        name-shimmer 3.2s linear infinite,
         name-float 2.6s ease-in-out infinite;
 }
 
@@ -684,10 +677,6 @@ body.gift-opened .surprise-button span {
             0 0 28px rgb(255 79 145 / 85%),
             0 0 44px rgb(255 79 145 / 60%);
     }
-}
-
-@keyframes name-shimmer {
-    to { background-position: -220% center; }
 }
 
 @keyframes name-float {
