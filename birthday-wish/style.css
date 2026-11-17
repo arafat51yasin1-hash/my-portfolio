@@ -250,6 +250,118 @@ h1 em {
     color: #963f68;
 }
 
+.gift-wrap {
+    height: 96px;
+    display: grid;
+    place-items: center;
+    margin: -8px 0 14px;
+    perspective: 500px;
+}
+
+.gift-box {
+    position: relative;
+    width: 112px;
+    height: 88px;
+}
+
+.gift-base {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    left: 10px;
+    height: 54px;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 90%);
+    border-radius: 7px 7px 10px 10px;
+    background: linear-gradient(135deg, #ff9fc2, #ed4388);
+    box-shadow: 0 9px 16px rgb(183 38 105 / 22%), inset 0 2px rgb(255 255 255 / 36%);
+}
+
+.gift-ribbon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 42%;
+    width: 16%;
+    background: linear-gradient(90deg, #fff4f8, #fff 50%, #ffd8e7);
+}
+
+.gift-lid {
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    right: 3px;
+    left: 3px;
+    height: 21px;
+    border: 1px solid rgb(255 255 255 / 90%);
+    border-radius: 7px;
+    background: linear-gradient(135deg, #ffb1cd, #f65a99);
+    box-shadow: 0 5px 9px rgb(183 38 105 / 20%), inset 0 2px rgb(255 255 255 / 45%);
+    transform-origin: 12% 85%;
+}
+
+.gift-lid .gift-ribbon {
+    left: 43%;
+    width: 14%;
+}
+
+.gift-bow {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff4f8;
+    transform: translateX(-50%);
+}
+
+.gift-bow::before,
+.gift-bow::after {
+    position: absolute;
+    top: -5px;
+    width: 20px;
+    height: 15px;
+    border: 3px solid #fff4f8;
+    border-radius: 70% 70% 45% 45%;
+    content: "";
+}
+
+.gift-bow::before {
+    right: 4px;
+    transform: rotate(28deg);
+}
+
+.gift-bow::after {
+    left: 4px;
+    transform: rotate(-28deg);
+}
+
+.gift-sparkle {
+    position: absolute;
+    z-index: 2;
+    color: #ff4f91;
+    opacity: 0;
+}
+
+.sparkle-left {
+    top: 15px;
+    left: -3px;
+}
+
+.sparkle-right {
+    top: 32px;
+    right: -2px;
+}
+
+.gift-box.is-opening .gift-lid {
+    animation: gift-lid-open 850ms cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+}
+
+.gift-box.is-opening .gift-sparkle {
+    animation: gift-sparkle 650ms ease-out 220ms both;
+}
+
 .actions {
     display: grid;
     justify-items: start;
@@ -347,6 +459,18 @@ h1 em {
 @keyframes message-arrive {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gift-lid-open {
+    0% { transform: translate(0, 0) rotate(0); }
+    28% { transform: translate(0, -10px) rotate(-8deg); }
+    100% { transform: translate(-34px, -68px) rotate(-34deg); }
+}
+
+@keyframes gift-sparkle {
+    0% { opacity: 0; scale: 0.5; }
+    45% { opacity: 1; scale: 1.25; }
+    100% { opacity: 0; scale: 0.8; }
 }
 
 @keyframes planet-float {
