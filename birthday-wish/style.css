@@ -429,6 +429,23 @@ h1 em {
     border: 0;
 }
 
+.song-fallback {
+    margin: 8px 0 0;
+    color: #963f68;
+    font-size: 0.78rem;
+}
+
+.song-fallback a {
+    color: #a91f61;
+    font-weight: 700;
+    text-underline-offset: 3px;
+}
+
+.song-fallback a:focus-visible {
+    outline: 2px solid #a91f61;
+    outline-offset: 3px;
+}
+
 .gift-box {
     position: relative;
     width: 112px;
