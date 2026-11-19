@@ -786,6 +786,122 @@ body.gift-opened .surprise-button span {
     animation: footer-spin 12s linear infinite;
 }
 
+.teddy-sequence[hidden],
+.teddy-page[hidden] {
+    display: none;
+}
+
+.teddy-sequence {
+    position: fixed;
+    z-index: 25;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 18% 12%, rgb(255 255 255 / 68%), transparent 28%),
+        radial-gradient(circle at 82% 82%, rgb(255 63 140 / 28%), transparent 32%),
+        linear-gradient(145deg, #ffd4e2, #ff94ba 58%, #ffc2d6);
+}
+
+.teddy-sequence.is-active {
+    animation: teddy-page-arrive 650ms ease-out both;
+}
+
+.teddy-sequence.is-leaving {
+    animation: teddy-page-leave 450ms ease-in both;
+}
+
+.teddy-page {
+    width: min(680px, calc(100vw - 28px));
+    min-height: min(620px, calc(100vh - 40px));
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 12px;
+    padding: 28px 18px;
+    text-align: center;
+}
+
+.teddy-page.is-entering {
+    animation: teddy-page-arrive 430ms ease-out both;
+}
+
+.teddy-page.is-leaving {
+    animation: teddy-page-leave 320ms ease-in both;
+}
+
+.teddy-kicker {
+    margin: 0;
+    color: #a93471;
+    font-size: clamp(0.68rem, 2vw, 0.82rem);
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.teddy-page h1 {
+    margin: 0;
+    color: #982b60;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 7vw, 4.5rem);
+    line-height: 1;
+    text-shadow: 0 4px 18px rgb(255 255 255 / 72%);
+}
+
+.teddy-gif {
+    width: min(430px, 82vw);
+    max-height: 42vh;
+    object-fit: contain;
+    border: 8px solid rgb(255 255 255 / 58%);
+    border-radius: 28px;
+    background: rgb(255 255 255 / 35%);
+    box-shadow: 0 22px 55px rgb(183 38 105 / 20%);
+}
+
+.teddy-note {
+    max-width: 520px;
+    margin: 4px 0 8px;
+    color: #963f68;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: 700;
+}
+
+.teddy-next {
+    min-height: 48px;
+    padding: 12px 22px;
+    border: 1px solid rgb(255 255 255 / 75%);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff649f, #d93678);
+    box-shadow: 0 12px 28px rgb(183 38 105 / 22%);
+    color: #fff;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.teddy-next:hover,
+.teddy-next:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgb(183 38 105 / 30%);
+}
+
+.teddy-next:focus-visible {
+    outline: 3px solid #982b60;
+    outline-offset: 4px;
+}
+
+@keyframes teddy-page-arrive {
+    from { opacity: 0; transform: scale(0.96) translateY(14px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes teddy-page-leave {
+    to { opacity: 0; transform: scale(1.04) translateY(-10px); }
+}
+
 .confetti-layer {
     position: fixed;
     inset: 0;

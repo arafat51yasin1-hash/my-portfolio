@@ -17,6 +17,7 @@ const giftLid = document.querySelector(".gift-lid");
 const confettiLayer = document.querySelector("#confetti-layer");
 const curtainReveal = document.querySelector("#curtain-reveal");
 const curtainRight = document.querySelector(".curtain-panel-right");
+const teddySequence = document.querySelector("#teddy-sequence");
 
 const confettiColors = ["#ff4f91", "#ff85b3", "#ffc1d6", "#fff0f5", "#d83f80"];
 
@@ -65,9 +66,37 @@ function playBirthdayTone() {
 curtainRight.addEventListener("animationend", () => {
     curtainReveal.hidden = true;
     curtainReveal.classList.remove("is-opening");
-    birthdayPage.setAttribute("aria-hidden", "false");
-    document.querySelector("#birthday-title").focus();
+    teddySequence.hidden = false;
+    teddySequence.classList.add("is-active");
+    document.querySelector("#teddy-title-1").focus();
 }, { once: true });
+
+document.querySelectorAll("[data-next-page]").forEach((button) => {
+    button.addEventListener("click", () => {
+        const currentPage = button.closest(".teddy-page");
+        const nextNumber = button.dataset.nextPage;
+        const nextPage = document.querySelector(`[data-teddy-page="${nextNumber}"]`);
+
+        currentPage.classList.add("is-leaving");
+        window.setTimeout(() => {
+            currentPage.hidden = true;
+            currentPage.classList.remove("is-leaving");
+            nextPage.hidden = false;
+            nextPage.classList.add("is-entering");
+            document.querySelector(`#teddy-title-${nextNumber}`).focus();
+        }, 320);
+    });
+});
+
+document.querySelector("#open-birthday-page").addEventListener("click", () => {
+    teddySequence.classList.add("is-leaving");
+    window.setTimeout(() => {
+        teddySequence.hidden = true;
+        teddySequence.classList.remove("is-active", "is-leaving");
+        birthdayPage.setAttribute("aria-hidden", "false");
+        document.querySelector("#birthday-title").focus();
+    }, 450);
+});
 
 function openBirthdayPage() {
     giftGateButton.disabled = true;
