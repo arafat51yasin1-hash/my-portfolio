@@ -31,33 +31,49 @@ function playBirthdayTone() {
 
     const audioContext = new AudioContextConstructor();
     const oscillator = audioContext.createOscillator();
+    const harmony = audioContext.createOscillator();
     const volume = audioContext.createGain();
+    const harmonyVolume = audioContext.createGain();
     const melody = [
         [392, 0.5], [392, 0.5], [440, 1], [392, 1], [523, 1], [494, 2],
         [392, 0.5], [392, 0.5], [440, 1], [392, 1], [587, 1], [523, 2],
         [392, 0.5], [392, 0.5], [784, 1], [659, 1], [523, 1], [494, 1], [440, 2],
-        [698, 0.5], [698, 0.5], [659, 1], [523, 1], [587, 1], [523, 2]
+        [698, 0.5], [698, 0.5], [659, 1], [523, 1], [587, 1], [523, 2],
+        [392, 1], [523, 1], [659, 1], [784, 2],
+        [698, 1], [659, 1], [587, 1], [523, 2],
+        [587, 1], [659, 1], [698, 1], [784, 2],
+        [523, 1], [587, 1], [659, 1], [784, 1], [523, 3]
     ];
-    const beatLength = 0.34;
-    const noteGap = 0.025;
+    const beatLength = 0.38;
+    const noteGap = 0.035;
 
-    oscillator.type = "sine";
+    oscillator.type = "triangle";
+    harmony.type = "sine";
     oscillator.connect(volume);
     volume.connect(audioContext.destination);
+    harmony.connect(harmonyVolume);
+    harmonyVolume.connect(audioContext.destination);
 
     let startTime = audioContext.currentTime + 0.05;
     melody.forEach(([frequency, beats]) => {
         const duration = beatLength * beats;
         oscillator.frequency.setValueAtTime(frequency, startTime);
+        harmony.frequency.setValueAtTime(frequency / 2, startTime);
         volume.gain.setValueAtTime(0.0001, startTime);
-        volume.gain.linearRampToValueAtTime(0.16, startTime + 0.02);
-        volume.gain.setValueAtTime(0.16, startTime + duration - 0.03);
+        volume.gain.linearRampToValueAtTime(0.22, startTime + 0.025);
+        volume.gain.setValueAtTime(0.22, startTime + duration - 0.04);
         volume.gain.linearRampToValueAtTime(0.0001, startTime + duration);
+        harmonyVolume.gain.setValueAtTime(0.0001, startTime);
+        harmonyVolume.gain.linearRampToValueAtTime(0.07, startTime + 0.04);
+        harmonyVolume.gain.setValueAtTime(0.07, startTime + duration - 0.04);
+        harmonyVolume.gain.linearRampToValueAtTime(0.0001, startTime + duration);
         startTime += duration + noteGap;
     });
 
     oscillator.start();
-    oscillator.stop(startTime);
+    harmony.start();
+    oscillator.stop(startTime + 0.8);
+    harmony.stop(startTime + 0.8);
     audioContext.resume().catch((error) => {
         console.error("Unable to start the birthday tone.", error);
     });
