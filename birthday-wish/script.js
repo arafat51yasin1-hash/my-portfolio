@@ -20,6 +20,8 @@ const curtainRight = document.querySelector(".curtain-panel-right");
 const proposalYes = document.querySelector("#proposal-yes");
 const proposalNo = document.querySelector("#proposal-no");
 const proposalResult = document.querySelector("#proposal-result");
+const proposalStage = document.querySelector("#proposal-stage");
+const proposalNext = document.querySelector("#proposal-next");
 
 const confettiColors = ["#ff4f91", "#ff85b3", "#ffc1d6", "#fff0f5", "#d83f80"];
 
@@ -68,8 +70,9 @@ function playBirthdayTone() {
 curtainRight.addEventListener("animationend", () => {
     curtainReveal.hidden = true;
     curtainReveal.classList.remove("is-opening");
-    birthdayPage.setAttribute("aria-hidden", "false");
-    document.querySelector("#birthday-title").focus();
+    proposalStage.hidden = false;
+    proposalStage.classList.add("is-active");
+    document.querySelector("#proposal-title").focus();
 }, { once: true });
 
 function openBirthdayPage() {
@@ -115,8 +118,10 @@ proposalYes.addEventListener("click", () => {
     proposalNo.disabled = true;
     proposalYes.textContent = "Always yours! 💍";
     proposalNo.hidden = true;
-    proposalResult.textContent = "Yay! You made me the happiest person! A kiss for you: 💋😘";
+    proposalStage.classList.add("is-celebrating");
+    proposalResult.textContent = "Yay! You made me the happiest person! Kiss for you: 💋😘";
     proposalResult.hidden = false;
+    proposalNext.hidden = false;
 
     for (let index = 0; index < 45; index += 1) {
         const heart = document.createElement("span");
@@ -141,6 +146,17 @@ proposalNo.addEventListener("touchstart", (event) => {
     moveNoButton();
 }, { passive: false });
 proposalNo.addEventListener("click", moveNoButton);
+
+proposalNext.addEventListener("click", () => {
+    proposalStage.classList.add("is-leaving");
+    window.setTimeout(() => {
+        proposalStage.hidden = true;
+        birthdayPage.hidden = false;
+        birthdayPage.setAttribute("aria-hidden", "false");
+        document.body.classList.add("birthday-visible");
+        document.querySelector("#birthday-title").focus();
+    }, 500);
+});
 
 passwordForm.addEventListener("submit", (event) => {
     event.preventDefault();
