@@ -17,11 +17,6 @@ const giftLid = document.querySelector(".gift-lid");
 const confettiLayer = document.querySelector("#confetti-layer");
 const curtainReveal = document.querySelector("#curtain-reveal");
 const curtainRight = document.querySelector(".curtain-panel-right");
-const proposalYes = document.querySelector("#proposal-yes");
-const proposalNo = document.querySelector("#proposal-no");
-const proposalResult = document.querySelector("#proposal-result");
-const proposalStage = document.querySelector("#proposal-stage");
-const proposalNext = document.querySelector("#proposal-next");
 
 const confettiColors = ["#ff4f91", "#ff85b3", "#ffc1d6", "#fff0f5", "#d83f80"];
 
@@ -70,9 +65,8 @@ function playBirthdayTone() {
 curtainRight.addEventListener("animationend", () => {
     curtainReveal.hidden = true;
     curtainReveal.classList.remove("is-opening");
-    proposalStage.hidden = false;
-    proposalStage.classList.add("is-active");
-    document.querySelector("#proposal-title").focus();
+    birthdayPage.setAttribute("aria-hidden", "false");
+    document.querySelector("#birthday-title").focus();
 }, { once: true });
 
 function openBirthdayPage() {
@@ -104,59 +98,6 @@ function celebrate() {
         piece.addEventListener("animationend", () => piece.remove(), { once: true });
     }
 }
-
-function moveNoButton() {
-    const proposals = document.querySelector("#proposal-actions");
-    const maxX = Math.min(95, proposals.clientWidth - proposalNo.offsetWidth);
-    const maxY = 18;
-
-    proposalNo.style.transform = `translate(${Math.round(Math.random() * maxX - maxX / 2)}px, ${Math.round(Math.random() * maxY - maxY / 2)}px)`;
-}
-
-proposalYes.addEventListener("click", () => {
-    proposalYes.disabled = true;
-    proposalNo.disabled = true;
-    proposalYes.textContent = "Always yours! 💍";
-    proposalNo.hidden = true;
-    proposalStage.classList.add("is-celebrating");
-    proposalResult.textContent = "Yay! You made me the happiest person! Kiss for you: 💋😘";
-    proposalResult.hidden = false;
-    proposalNext.hidden = false;
-
-    for (let index = 0; index < 45; index += 1) {
-        const heart = document.createElement("span");
-        heart.className = "confetti";
-        heart.style.left = `${Math.random() * 100}%`;
-        heart.style.width = "10px";
-        heart.style.height = "10px";
-        heart.style.background = "transparent";
-        heart.style.color = confettiColors[index % confettiColors.length];
-        heart.textContent = index % 2 === 0 ? "♥" : "♡";
-        heart.style.fontSize = "18px";
-        heart.style.animationDelay = `${Math.random() * 0.5}s`;
-        heart.style.setProperty("--drift", `${Math.random() * 160 - 80}px`);
-        confettiLayer.append(heart);
-        heart.addEventListener("animationend", () => heart.remove(), { once: true });
-    }
-});
-
-proposalNo.addEventListener("mouseenter", moveNoButton);
-proposalNo.addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    moveNoButton();
-}, { passive: false });
-proposalNo.addEventListener("click", moveNoButton);
-
-proposalNext.addEventListener("click", () => {
-    proposalStage.classList.add("is-leaving");
-    window.setTimeout(() => {
-        proposalStage.hidden = true;
-        birthdayPage.hidden = false;
-        birthdayPage.setAttribute("aria-hidden", "false");
-        document.body.classList.add("birthday-visible");
-        document.querySelector("#birthday-title").focus();
-    }, 500);
-});
 
 passwordForm.addEventListener("submit", (event) => {
     event.preventDefault();
