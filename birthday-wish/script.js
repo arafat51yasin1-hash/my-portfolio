@@ -1,6 +1,7 @@
 const BIRTHDAY_PASSWORD = "love you aru";
 
 const surpriseButton = document.querySelector("#surprise-button");
+const birthdayMessage = document.querySelector("#birthday-message");
 const birthdayPage = document.querySelector("#birthday-page");
 const giftGate = document.querySelector("#gift-gate");
 const passwordGate = document.querySelector("#password-gate");
@@ -130,7 +131,9 @@ function openBirthdayPage() {
 }
 
 function celebrate() {
+    surpriseButton.setAttribute("aria-expanded", "true");
     surpriseButton.textContent = "Surprise unlocked! 🎉";
+    birthdayMessage.hidden = false;
 
     for (let index = 0; index < 70; index += 1) {
         const piece = document.createElement("span");
