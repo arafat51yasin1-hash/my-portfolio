@@ -1175,11 +1175,6 @@ body.gift-opened .card-footer {
         align-items: start;
     }
 
-    #birthday-page,
-    #open-birthday-page {
-        display: none !important;
-    }
-
     .birthday-card {
         padding: 22px 22px 18px;
     }
