@@ -55,20 +55,22 @@ function playBirthdayTone() {
     harmonyVolume.connect(audioContext.destination);
 
     let startTime = audioContext.currentTime + 0.05;
-    melody.forEach(([frequency, beats]) => {
-        const duration = beatLength * beats;
-        oscillator.frequency.setValueAtTime(frequency, startTime);
-        harmony.frequency.setValueAtTime(frequency / 2, startTime);
-        volume.gain.setValueAtTime(0.0001, startTime);
-        volume.gain.linearRampToValueAtTime(0.22, startTime + 0.025);
-        volume.gain.setValueAtTime(0.22, startTime + duration - 0.04);
-        volume.gain.linearRampToValueAtTime(0.0001, startTime + duration);
-        harmonyVolume.gain.setValueAtTime(0.0001, startTime);
-        harmonyVolume.gain.linearRampToValueAtTime(0.07, startTime + 0.04);
-        harmonyVolume.gain.setValueAtTime(0.07, startTime + duration - 0.04);
-        harmonyVolume.gain.linearRampToValueAtTime(0.0001, startTime + duration);
-        startTime += duration + noteGap;
-    });
+    for (let repeat = 0; repeat < 3; repeat += 1) {
+        melody.forEach(([frequency, beats]) => {
+            const duration = beatLength * beats;
+            oscillator.frequency.setValueAtTime(frequency, startTime);
+            harmony.frequency.setValueAtTime(frequency / 2, startTime);
+            volume.gain.setValueAtTime(0.0001, startTime);
+            volume.gain.linearRampToValueAtTime(repeat === 2 ? 0.16 : 0.22, startTime + 0.025);
+            volume.gain.setValueAtTime(repeat === 2 ? 0.16 : 0.22, startTime + duration - 0.04);
+            volume.gain.linearRampToValueAtTime(0.0001, startTime + duration);
+            harmonyVolume.gain.setValueAtTime(0.0001, startTime);
+            harmonyVolume.gain.linearRampToValueAtTime(repeat === 2 ? 0.05 : 0.07, startTime + 0.04);
+            harmonyVolume.gain.setValueAtTime(repeat === 2 ? 0.05 : 0.07, startTime + duration - 0.04);
+            harmonyVolume.gain.linearRampToValueAtTime(0.0001, startTime + duration);
+            startTime += duration + noteGap;
+        });
+    }
 
     oscillator.start();
     harmony.start();
@@ -109,6 +111,7 @@ document.querySelector("#open-birthday-page").addEventListener("click", () => {
     window.setTimeout(() => {
         teddySequence.hidden = true;
         teddySequence.classList.remove("is-active", "is-leaving");
+        birthdayPage.hidden = false;
         birthdayPage.setAttribute("aria-hidden", "false");
         document.querySelector("#birthday-title").focus();
     }, 450);

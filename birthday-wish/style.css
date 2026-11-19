@@ -786,6 +786,7 @@ body.gift-opened .surprise-button span {
     animation: footer-spin 12s linear infinite;
 }
 
+.birthday-stage[hidden],
 .teddy-sequence[hidden],
 .teddy-page[hidden] {
     display: none;
@@ -858,6 +859,15 @@ body.gift-opened .surprise-button span {
     box-shadow: 0 22px 55px rgb(183 38 105 / 20%);
 }
 
+.teddy-kiss-gif {
+    width: min(480px, 88vw);
+    border-color: rgb(255 255 255 / 82%);
+    box-shadow:
+        0 22px 55px rgb(183 38 105 / 24%),
+        0 0 28px rgb(255 104 164 / 28%);
+    animation: kiss-gif-glow 2.2s ease-in-out infinite alternate;
+}
+
 .teddy-note {
     max-width: 520px;
     margin: 4px 0 8px;
@@ -900,6 +910,11 @@ body.gift-opened .surprise-button span {
 
 @keyframes teddy-page-leave {
     to { opacity: 0; transform: scale(1.04) translateY(-10px); }
+}
+
+@keyframes kiss-gif-glow {
+    from { transform: scale(0.985); filter: saturate(0.92) brightness(0.98); }
+    to { transform: scale(1.015); filter: saturate(1.12) brightness(1.04); }
 }
 
 .confetti-layer {
