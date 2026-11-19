@@ -602,71 +602,6 @@ h1 em {
     color: #963f68;
 }
 
-.song-player {
-    margin-bottom: 22px;
-    text-align: left;
-}
-
-.song-heading {
-    margin-bottom: 10px;
-}
-
-.song-kicker {
-    margin: 0 0 4px;
-    color: #b12a69;
-    font-size: 0.64rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-}
-
-.song-heading h2 {
-    margin: 0;
-    color: #8e2456;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.3rem;
-    font-weight: 400;
-}
-
-.song-credit {
-    margin: 3px 0 0;
-    color: #963f68;
-    font-size: 0.78rem;
-}
-
-.song-video {
-    width: min(100%, 390px);
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border: 1px solid rgb(255 255 255 / 70%);
-    border-radius: 12px;
-    background: rgb(255 255 255 / 28%);
-    box-shadow: 0 10px 24px rgb(183 38 105 / 16%);
-}
-
-.song-video iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-.song-fallback {
-    margin: 8px 0 0;
-    color: #963f68;
-    font-size: 0.78rem;
-}
-
-.song-fallback a {
-    color: #a91f61;
-    font-weight: 700;
-    text-underline-offset: 3px;
-}
-
-.song-fallback a:focus-visible {
-    outline: 2px solid #a91f61;
-    outline-offset: 3px;
-}
-
 .gift-box {
     position: relative;
     width: 112px;
@@ -1146,15 +1081,6 @@ body.gift-opened .card-footer {
 
     .intro {
         margin: 16px auto 22px;
-    }
-
-    .song-player {
-        width: min(100%, 440px);
-        margin: 0 auto 22px;
-    }
-
-    .song-video {
-        width: 100%;
     }
 
     .actions {
