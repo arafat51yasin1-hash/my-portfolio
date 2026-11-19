@@ -100,6 +100,19 @@ body:not(.gift-opened) {
     line-height: 1.1;
 }
 
+.password-title-word {
+    display: inline-block;
+    animation: password-word-arrive 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.password-title-word:nth-child(2) {
+    animation-delay: 140ms;
+}
+
+.password-title-word:nth-child(3) {
+    animation-delay: 280ms;
+}
+
 .password-form {
     display: grid;
     width: min(100%, 340px);
@@ -746,6 +759,18 @@ body.gift-opened .surprise-button span {
 @keyframes gate-fade {
     from { opacity: 0; filter: blur(5px); }
     to { opacity: 1; filter: blur(0); }
+}
+
+@keyframes password-word-arrive {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes gift-hover {
