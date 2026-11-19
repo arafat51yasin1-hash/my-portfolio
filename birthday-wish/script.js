@@ -14,22 +14,27 @@ const giftGateButton = document.querySelector("#gift-gate-button");
 const giftBox = document.querySelector("#gift-box");
 const giftLid = document.querySelector(".gift-lid");
 const confettiLayer = document.querySelector("#confetti-layer");
+const curtainReveal = document.querySelector("#curtain-reveal");
+const curtainRight = document.querySelector(".curtain-panel-right");
 
 const confettiColors = ["#ff4f91", "#ff85b3", "#ffc1d6", "#fff0f5", "#d83f80"];
+
+curtainRight.addEventListener("animationend", () => {
+    curtainReveal.hidden = true;
+    curtainReveal.classList.remove("is-opening");
+    birthdayPage.setAttribute("aria-hidden", "false");
+    document.querySelector("#birthday-title").focus();
+}, { once: true });
 
 function openBirthdayPage() {
     giftGateButton.disabled = true;
     giftBox.classList.add("is-opening");
 
     giftLid.addEventListener("animationend", () => {
-        giftGate.addEventListener("transitionend", () => {
-            giftGate.hidden = true;
-            document.body.classList.add("gift-opened");
-            birthdayPage.setAttribute("aria-hidden", "false");
-            document.querySelector("#birthday-title").focus();
-        }, { once: true });
-
-        giftGate.classList.add("is-dismissed");
+        giftGate.hidden = true;
+        document.body.classList.add("gift-opened");
+        curtainReveal.hidden = false;
+        curtainReveal.classList.add("is-opening");
     }, { once: true });
 }
 
