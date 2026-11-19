@@ -52,6 +52,10 @@ body:not(.gift-opened) {
     display: none;
 }
 
+.gift-gate [hidden] {
+    display: none;
+}
+
 .gift-gate.is-dismissed {
     opacity: 0;
     pointer-events: none;
@@ -94,6 +98,62 @@ body:not(.gift-opened) {
     font-size: clamp(2.2rem, 8vw, 3.8rem);
     font-weight: 400;
     line-height: 1.1;
+}
+
+.password-form {
+    display: grid;
+    width: min(100%, 340px);
+    gap: 12px;
+    margin-top: 12px;
+    color: #8e2456;
+    text-align: left;
+}
+
+.password-form label {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.password-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgb(142 36 86 / 35%);
+    border-radius: 10px;
+    background: rgb(255 255 255 / 78%);
+    color: #6d1742;
+    font: inherit;
+}
+
+.password-form input:focus-visible,
+.password-submit:focus-visible {
+    outline: 3px solid #a91f61;
+    outline-offset: 3px;
+}
+
+.password-form input[aria-invalid="true"] {
+    border-color: #b4235b;
+}
+
+.password-submit {
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 10px;
+    background: #a93471;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.password-submit:hover {
+    background: #8e2456;
+}
+
+.password-error {
+    min-height: 1.25em;
+    margin: 0;
+    color: #a51f50;
+    font-size: 0.9rem;
 }
 
 .gift-gate-button {

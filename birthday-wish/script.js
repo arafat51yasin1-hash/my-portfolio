@@ -1,7 +1,14 @@
+const BIRTHDAY_PASSWORD = "love you aru";
+
 const surpriseButton = document.querySelector("#surprise-button");
 const birthdayMessage = document.querySelector("#birthday-message");
 const birthdayPage = document.querySelector("#birthday-page");
 const giftGate = document.querySelector("#gift-gate");
+const passwordGate = document.querySelector("#password-gate");
+const passwordForm = document.querySelector("#password-form");
+const passwordInput = document.querySelector("#birthday-password");
+const passwordError = document.querySelector("#password-error");
+const giftGateContent = document.querySelector("#gift-gate-content");
 const giftGateButton = document.querySelector("#gift-gate-button");
 const giftBox = document.querySelector("#gift-box");
 const giftLid = document.querySelector(".gift-lid");
@@ -41,6 +48,27 @@ function celebrate() {
         piece.addEventListener("animationend", () => piece.remove(), { once: true });
     }
 }
+
+passwordForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (passwordInput.value !== BIRTHDAY_PASSWORD) {
+        passwordError.textContent = "That password doesn't match. Please try again.";
+        passwordInput.setAttribute("aria-invalid", "true");
+        passwordInput.focus();
+        return;
+    }
+
+    passwordError.textContent = "";
+    passwordInput.removeAttribute("aria-invalid");
+    passwordGate.hidden = true;
+    giftGateContent.hidden = false;
+});
+
+passwordInput.addEventListener("input", () => {
+    passwordError.textContent = "";
+    passwordInput.removeAttribute("aria-invalid");
+});
 
 giftGateButton.addEventListener("click", openBirthdayPage, { once: true });
 surpriseButton.addEventListener("click", celebrate, { once: true });
