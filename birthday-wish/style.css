@@ -172,6 +172,43 @@ body:not(.gift-opened) {
     font-size: 0.9rem;
 }
 
+.bird-flight {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bird {
+    position: absolute;
+    width: clamp(34px, 5vw, 58px);
+    height: auto;
+    fill: #fff;
+    opacity: 0;
+    filter: drop-shadow(0 3px 5px rgb(142 36 86 / 28%));
+}
+
+.bird-flight.is-flying .bird-one {
+    top: 72%;
+    left: -9%;
+    animation: bird-flight-one 2500ms ease-in-out both;
+}
+
+.bird-flight.is-flying .bird-two {
+    top: 88%;
+    left: 7%;
+    width: clamp(28px, 4vw, 48px);
+    animation: bird-flight-two 2700ms ease-in-out 180ms both;
+}
+
+.bird-flight.is-flying .bird-three {
+    top: 58%;
+    left: -8%;
+    width: clamp(40px, 6vw, 68px);
+    animation: bird-flight-three 2900ms ease-in-out 360ms both;
+}
+
 .gift-gate-button {
     display: grid;
     justify-items: center;
@@ -814,6 +851,24 @@ body.gift-opened .surprise-button span {
     50% { transform: scale(var(--gift-scale)) translateY(-10px); }
 }
 
+@keyframes bird-flight-one {
+    0% { opacity: 0; transform: translate(0, 0) rotate(-8deg) scale(0.75); }
+    15%, 78% { opacity: 1; }
+    100% { opacity: 0; transform: translate(115vw, -66vh) rotate(9deg) scale(0.85); }
+}
+
+@keyframes bird-flight-two {
+    0% { opacity: 0; transform: translate(0, 0) rotate(7deg) scale(0.7); }
+    15%, 78% { opacity: 1; }
+    100% { opacity: 0; transform: translate(110vw, -78vh) rotate(-10deg) scale(1.05); }
+}
+
+@keyframes bird-flight-three {
+    0% { opacity: 0; transform: translate(0, 0) rotate(-4deg) scale(0.8); }
+    15%, 78% { opacity: 1; }
+    100% { opacity: 0; transform: translate(112vw, 12vh) rotate(12deg) scale(0.95); }
+}
+
 @keyframes hint-pulse {
     0%, 100% { opacity: 0.72; }
     50% { opacity: 1; }
@@ -993,6 +1048,10 @@ body.gift-opened .card-footer {
     }
 
     .password-title-word {
+        animation-delay: 0ms !important;
+    }
+
+    .bird-flight .bird {
         animation-delay: 0ms !important;
     }
 }

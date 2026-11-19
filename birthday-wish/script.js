@@ -8,6 +8,7 @@ const passwordGate = document.querySelector("#password-gate");
 const passwordForm = document.querySelector("#password-form");
 const passwordInput = document.querySelector("#birthday-password");
 const passwordError = document.querySelector("#password-error");
+const birdFlight = document.querySelector("#bird-flight");
 const giftGateContent = document.querySelector("#gift-gate-content");
 const giftGateButton = document.querySelector("#gift-gate-button");
 const giftBox = document.querySelector("#gift-box");
@@ -62,7 +63,18 @@ passwordForm.addEventListener("submit", (event) => {
     passwordError.textContent = "";
     passwordInput.removeAttribute("aria-invalid");
     passwordGate.hidden = true;
-    giftGateContent.hidden = false;
+    giftGate.removeAttribute("aria-labelledby");
+    giftGate.setAttribute("aria-label", "Your gift is on its way");
+    birdFlight.hidden = false;
+    birdFlight.classList.add("is-flying");
+
+    birdFlight.querySelector(".bird-three").addEventListener("animationend", () => {
+        birdFlight.hidden = true;
+        birdFlight.classList.remove("is-flying");
+        giftGateContent.hidden = false;
+        giftGate.removeAttribute("aria-label");
+        giftGate.setAttribute("aria-labelledby", "gift-gate-gift-title");
+    }, { once: true });
 });
 
 passwordInput.addEventListener("input", () => {
