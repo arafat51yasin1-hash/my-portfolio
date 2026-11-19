@@ -74,13 +74,20 @@ passwordForm.addEventListener("submit", (event) => {
     birdFlight.hidden = false;
     birdFlight.classList.add("is-flying");
 
-    heartBirdFlock.addEventListener("animationend", () => {
+    function finishHeartBirdFlight(event) {
+        if (event.target !== heartBirdFlock) {
+            return;
+        }
+
+        heartBirdFlock.removeEventListener("animationend", finishHeartBirdFlight);
         birdFlight.hidden = true;
         birdFlight.classList.remove("is-flying");
         giftGateContent.hidden = false;
         giftGate.removeAttribute("aria-label");
         giftGate.setAttribute("aria-labelledby", "gift-gate-gift-title");
-    }, { once: true });
+    }
+
+    heartBirdFlock.addEventListener("animationend", finishHeartBirdFlight);
 });
 
 passwordInput.addEventListener("input", () => {
