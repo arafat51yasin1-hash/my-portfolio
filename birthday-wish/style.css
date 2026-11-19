@@ -263,6 +263,20 @@ body:not(.gift-opened) {
     animation: carried-heart-beat 1900ms ease-in-out infinite;
 }
 
+.carried-heart-message {
+    fill: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    paint-order: stroke;
+    stroke: rgb(191 31 73 / 35%);
+    stroke-linejoin: round;
+    stroke-width: 0.6px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
 .carrier-bird {
     transform-box: fill-box;
     transform-origin: center;
