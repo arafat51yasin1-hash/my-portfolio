@@ -20,6 +20,48 @@ const curtainRight = document.querySelector(".curtain-panel-right");
 
 const confettiColors = ["#ff4f91", "#ff85b3", "#ffc1d6", "#fff0f5", "#d83f80"];
 
+function playBirthdayTone() {
+    const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContextConstructor) {
+        console.error("This browser does not support the Web Audio API; the birthday tone could not play.");
+        return;
+    }
+
+    const audioContext = new AudioContextConstructor();
+    const oscillator = audioContext.createOscillator();
+    const volume = audioContext.createGain();
+    const melody = [
+        [392, 0.5], [392, 0.5], [440, 1], [392, 1], [523, 1], [494, 2],
+        [392, 0.5], [392, 0.5], [440, 1], [392, 1], [587, 1], [523, 2],
+        [392, 0.5], [392, 0.5], [784, 1], [659, 1], [523, 1], [494, 1], [440, 2],
+        [698, 0.5], [698, 0.5], [659, 1], [523, 1], [587, 1], [523, 2]
+    ];
+    const beatLength = 0.34;
+    const noteGap = 0.025;
+
+    oscillator.type = "sine";
+    oscillator.connect(volume);
+    volume.connect(audioContext.destination);
+
+    let startTime = audioContext.currentTime + 0.05;
+    melody.forEach(([frequency, beats]) => {
+        const duration = beatLength * beats;
+        oscillator.frequency.setValueAtTime(frequency, startTime);
+        volume.gain.setValueAtTime(0.0001, startTime);
+        volume.gain.linearRampToValueAtTime(0.16, startTime + 0.02);
+        volume.gain.setValueAtTime(0.16, startTime + duration - 0.03);
+        volume.gain.linearRampToValueAtTime(0.0001, startTime + duration);
+        startTime += duration + noteGap;
+    });
+
+    oscillator.start();
+    oscillator.stop(startTime);
+    audioContext.resume().catch((error) => {
+        console.error("Unable to start the birthday tone.", error);
+    });
+}
+
 curtainRight.addEventListener("animationend", () => {
     curtainReveal.hidden = true;
     curtainReveal.classList.remove("is-opening");
@@ -30,6 +72,7 @@ curtainRight.addEventListener("animationend", () => {
 function openBirthdayPage() {
     giftGateButton.disabled = true;
     giftBox.classList.add("is-opening");
+    playBirthdayTone();
 
     giftLid.addEventListener("animationend", () => {
         giftGate.hidden = true;
