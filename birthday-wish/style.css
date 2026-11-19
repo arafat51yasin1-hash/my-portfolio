@@ -231,33 +231,19 @@ body:not(.gift-opened) {
     pointer-events: none;
 }
 
-.bird {
+.heart-bird-flock {
     position: absolute;
-    width: clamp(34px, 5vw, 58px);
+    top: 50%;
+    left: 0;
+    width: clamp(280px, 42vw, 460px);
     height: auto;
-    fill: #fff;
+    color: #fff;
     opacity: 0;
-    filter: drop-shadow(0 3px 5px rgb(142 36 86 / 28%));
+    filter: drop-shadow(0 4px 8px rgb(142 36 86 / 35%));
 }
 
-.bird-flight.is-flying .bird-one {
-    top: 72%;
-    left: -9%;
-    animation: bird-flight-one 2500ms ease-in-out both;
-}
-
-.bird-flight.is-flying .bird-two {
-    top: 88%;
-    left: 7%;
-    width: clamp(28px, 4vw, 48px);
-    animation: bird-flight-two 2700ms ease-in-out 180ms both;
-}
-
-.bird-flight.is-flying .bird-three {
-    top: 58%;
-    left: -8%;
-    width: clamp(40px, 6vw, 68px);
-    animation: bird-flight-three 2900ms ease-in-out 360ms both;
+.bird-flight.is-flying .heart-bird-flock {
+    animation: heart-flock-fly 3600ms cubic-bezier(0.45, 0, 0.55, 1) both;
 }
 
 .gift-gate-button {
@@ -910,22 +896,31 @@ body.gift-opened .surprise-button span {
     50% { transform: scale(var(--gift-scale)) translateY(-10px); }
 }
 
-@keyframes bird-flight-one {
-    0% { opacity: 0; transform: translate(0, 0) rotate(-8deg) scale(0.75); }
-    15%, 78% { opacity: 1; }
-    100% { opacity: 0; transform: translate(115vw, -66vh) rotate(9deg) scale(0.85); }
-}
+@keyframes heart-flock-fly {
+    0% {
+        opacity: 0;
+        transform: translate(-100%, -48%) scale(0.68) rotate(-10deg);
+    }
 
-@keyframes bird-flight-two {
-    0% { opacity: 0; transform: translate(0, 0) rotate(7deg) scale(0.7); }
-    15%, 78% { opacity: 1; }
-    100% { opacity: 0; transform: translate(110vw, -78vh) rotate(-10deg) scale(1.05); }
-}
+    12% {
+        opacity: 1;
+        transform: translate(-72%, -54%) scale(0.82) rotate(-5deg);
+    }
 
-@keyframes bird-flight-three {
-    0% { opacity: 0; transform: translate(0, 0) rotate(-4deg) scale(0.8); }
-    15%, 78% { opacity: 1; }
-    100% { opacity: 0; transform: translate(112vw, 12vh) rotate(12deg) scale(0.95); }
+    45% {
+        opacity: 1;
+        transform: translate(34vw, -58%) scale(1) rotate(1deg);
+    }
+
+    78% {
+        opacity: 1;
+        transform: translate(78vw, -46%) scale(1.06) rotate(7deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(112vw, -50%) scale(0.96) rotate(11deg);
+    }
 }
 
 @keyframes hint-pulse {
@@ -1110,7 +1105,7 @@ body.gift-opened .card-footer {
         animation-delay: 0ms !important;
     }
 
-    .bird-flight .bird {
+    .heart-bird-flock {
         animation-delay: 0ms !important;
     }
 }

@@ -9,6 +9,7 @@ const passwordForm = document.querySelector("#password-form");
 const passwordInput = document.querySelector("#birthday-password");
 const passwordError = document.querySelector("#password-error");
 const birdFlight = document.querySelector("#bird-flight");
+const heartBirdFlock = document.querySelector("#heart-bird-flock");
 const giftGateContent = document.querySelector("#gift-gate-content");
 const giftGateButton = document.querySelector("#gift-gate-button");
 const giftBox = document.querySelector("#gift-box");
@@ -73,7 +74,7 @@ passwordForm.addEventListener("submit", (event) => {
     birdFlight.hidden = false;
     birdFlight.classList.add("is-flying");
 
-    birdFlight.querySelector(".bird-three").addEventListener("animationend", () => {
+    heartBirdFlock.addEventListener("animationend", () => {
         birdFlight.hidden = true;
         birdFlight.classList.remove("is-flying");
         giftGateContent.hidden = false;
