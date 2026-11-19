@@ -786,6 +786,7 @@ body.gift-opened .surprise-button span {
     animation: footer-spin 12s linear infinite;
 }
 
+.birthday-message[hidden],
 .birthday-stage[hidden],
 .teddy-sequence[hidden],
 .teddy-page[hidden] {
