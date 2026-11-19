@@ -868,6 +868,15 @@ body.gift-opened .surprise-button span {
     animation: kiss-gif-glow 2.2s ease-in-out infinite alternate;
 }
 
+.teddy-photo {
+    width: min(430px, 82vw);
+    height: min(38vh, 360px);
+    object-fit: cover;
+    border: 8px solid rgb(255 255 255 / 82%);
+    border-radius: 28px;
+    box-shadow: 0 22px 55px rgb(183 38 105 / 24%);
+}
+
 .teddy-note {
     max-width: 520px;
     margin: 4px 0 8px;
@@ -1164,6 +1173,11 @@ body.gift-opened .card-footer {
     body {
         padding: 20px 14px;
         align-items: start;
+    }
+
+    #birthday-page,
+    #open-birthday-page {
+        display: none !important;
     }
 
     .birthday-card {
